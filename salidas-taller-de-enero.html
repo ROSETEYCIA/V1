@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosete y Cía - Salidas TALLER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos existentes se mantienen igual */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #5d6bc0, #7e57c2);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        
+        .section-frame {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #f1f3f5, #e9ecef);
+            padding: 12px 20px;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .section-content {
+            padding: 20px;
+            background: white;
+        }
+        
+        .form-container {
+            margin-top: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #5d6bc0;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #3f51b5;
+        }
+        
+        .btn-secondary {
+            background: #f1f3f5;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .salidas-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .salidas-table th {
+            background-color: #5d6bc0;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .salidas-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .salidas-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .badge-primary {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .currency {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn" onclick="window.location.href = 'enero.html'">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>ROSETEYCIA - SALIDAS TALLER</h1>
+    </header>
+    
+    <div class="container">
+        <div class="section-frame">
+            <div class="section-header">REGISTRAR SALIDA</div>
+            <div class="section-content">
+                <form id="formSalida">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>FECHA</label>
+                            <input type="date" id="fechaSalida" required>
+                        </div>
+                        <div class="form-group">
+                            <label>NÚMERO DE PARTE</label>
+                            <input type="text" id="numParte" list="partesList" required>
+                            <datalist id="partesList"></datalist>
+                        </div>
+                        <div class="form-group">
+                            <label>DESCRIPCIÓN DE PARTE</label>
+                            <input type="text" id="descParte" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CÓDIGO DE SERVICIO</label>
+                            <input type="text" id="codServicio" list="serviciosList" required>
+                            <datalist id="serviciosList"></datalist>
+                        </div>
+                        <div class="form-group">
+                            <label>DESCRIPCIÓN DEL SERVICIO</label>
+                            <input type="text" id="descServicio" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>MEDIDA</label>
+                            <input type="text" id="medida">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CANTIDAD</label>
+                            <input type="number" id="cantidad" min="1" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>POSICIÓN</label>
+                            <input type="text" id="posicion">
+                        </div>
+                        <div class="form-group">
+                            <label>MECÁNICO</label>
+                            <input type="text" id="mecanico">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>PRECIO UNITARIO</label>
+                            <input type="number" id="precioUnitario" step="0.01" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>IVA (16%)</label>
+                            <input type="number" id="iva" step="0.01" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>COSTO TOTAL</label>
+                            <input type="number" id="costoTotal" step="0.01" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">Limpiar</button>
+                        <button type="button" class="btn btn-primary" onclick="validarYAgregarSalida()">Guardar Salida</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="section-frame">
+            <div class="section-header">SALIDAS REGISTRADAS</div>
+            <div class="section-content">
+                <table class="salidas-table" id="tablaSalidas">
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>N° PARTE</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>CÓDIGO</th>
+                            <th>SERVICIO</th>
+                            <th>CANT.</th>
+                            <th>P. UNIT.</th>
+                            <th>IVA</th>
+                            <th>TOTAL</th>
+                            <th>MECÁNICO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTablaSalidas">
+                        <!-- Datos se cargarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos iniciales
+        let facturas = JSON.parse(localStorage.getItem('facturas')) || [];
+        let codigosServicio = JSON.parse(localStorage.getItem('codigosServicio')) || [];
+        let salidasTALLER = JSON.parse(localStorage.getItem('salidasTALLER')) || [];
+        
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar y cargar datos iniciales
+            cargarDatosIniciales();
+            actualizarTablaSalidas();
+            
+            // Configurar eventos
+            document.getElementById('numParte').addEventListener('change', function() {
+                const parteSeleccionada = facturas.find(p => p.numParte === this.value);
+                if (parteSeleccionada) {
+                    document.getElementById('descParte').value = parteSeleccionada.descripcion || '';
+                    document.getElementById('precioUnitario').value = parteSeleccionada.precioUnitario || '';
+                    calcularTotales();
+                } else {
+                    document.getElementById('descParte').value = '';
+                    document.getElementById('precioUnitario').value = '';
+                }
+            });
+            
+            document.getElementById('codServicio').addEventListener('change', function() {
+                const servicioSeleccionado = codigosServicio.find(s => s.codigo === this.value);
+                document.getElementById('descServicio').value = servicioSeleccionado ? servicioSeleccionado.descripcion : '';
+            });
+            
+            document.getElementById('cantidad').addEventListener('input', calcularTotales);
+            
+            // Establecer fecha actual por defecto
+            const hoy = new Date().toISOString().split('T')[0];
+            document.getElementById('fechaSalida').value = hoy;
+        });
+        
+        function cargarDatosIniciales() {
+            // Cargar partes desde facturas
+            const datalistPartes = document.getElementById('partesList');
+            datalistPartes.innerHTML = '';
+            
+            facturas.forEach(parte => {
+                if (parte.numParte) {
+                    const option = document.createElement('option');
+                    option.value = parte.numParte;
+                    option.setAttribute('data-descripcion', parte.descripcion || '');
+                    option.setAttribute('data-precio', parte.precioUnitario || '');
+                    datalistPartes.appendChild(option);
+                }
+            });
+            
+            // Cargar servicios
+            const datalistServicios = document.getElementById('serviciosList');
+            datalistServicios.innerHTML = '';
+            
+            codigosServicio.forEach(servicio => {
+                if (servicio.codigo) {
+                    const option = document.createElement('option');
+                    option.value = servicio.codigo;
+                    option.setAttribute('data-descripcion', servicio.descripcion || '');
+                    datalistServicios.appendChild(option);
+                }
+            });
+        }
+        
+        function calcularTotales() {
+            const cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
+            const precioUnitario = parseFloat(document.getElementById('precioUnitario').value) || 0;
+            const ivaUnitario = precioUnitario * 0.16;
+            const totalUnitario = precioUnitario + ivaUnitario;
+            const total = cantidad * totalUnitario;
+            
+            document.getElementById('iva').value = (ivaUnitario * cantidad).toFixed(2);
+            document.getElementById('costoTotal').value = total.toFixed(2);
+        }
+        
+        function validarYAgregarSalida() {
+            const fecha = document.getElementById('fechaSalida').value;
+            const numParte = document.getElementById('numParte').value;
+            const codServicio = document.getElementById('codServicio').value;
+            const cantidad = parseFloat(document.getElementById('cantidad').value);
+            
+            if (!fecha) {
+                alert('Por favor ingrese la fecha');
+                return;
+            }
+            
+            if (!numParte) {
+                alert('Por favor seleccione un número de parte');
+                return;
+            }
+            
+            if (!codServicio) {
+                alert('Por favor seleccione un código de servicio');
+                return;
+            }
+            
+            if (!cantidad || cantidad <= 0) {
+                alert('Por favor ingrese una cantidad válida');
+                return;
+            }
+            
+            agregarSalida();
+        }
+        
+        function agregarSalida() {
+            const fecha = document.getElementById('fechaSalida').value;
+            const numParte = document.getElementById('numParte').value;
+            const descParte = document.getElementById('descParte').value;
+            const codServicio = document.getElementById('codServicio').value;
+            const descServicio = document.getElementById('descServicio').value;
+            const cantidad = parseFloat(document.getElementById('cantidad').value);
+            const precioUnitario = parseFloat(document.getElementById('precioUnitario').value) || 0;
+            const iva = parseFloat(document.getElementById('iva').value) || 0;
+            const costoTotal = parseFloat(document.getElementById('costoTotal').value) || 0;
+            const mecanico = document.getElementById('mecanico').value;
+            const posicion = document.getElementById('posicion').value;
+            const medida = document.getElementById('medida').value;
+            
+            const nuevaSalida = {
+                fecha,
+                numParte,
+                descParte,
+                codServicio,
+                descServicio,
+                cantidad,
+                precioUnitario,
+                iva,
+                costoTotal,
+                mecanico: mecanico || 'No especificado',
+                posicion: posicion || 'No especificada',
+                medida: medida || 'No especificada'
+            };
+            
+            salidasTALLER.push(nuevaSalida);
+            localStorage.setItem('salidasTALLER', JSON.stringify(salidasTALLER));
+            actualizarTablaSalidas();
+            limpiarFormulario();
+            alert('Salida registrada correctamente');
+        }
+        
+        function actualizarTablaSalidas() {
+            const cuerpoTabla = document.getElementById('cuerpoTablaSalidas');
+            cuerpoTabla.innerHTML = '';
+            
+            if (salidasTALLER.length === 0) {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `<td colspan="11" style="text-align: center;">No hay salidas registradas</td>`;
+                cuerpoTabla.appendChild(fila);
+                return;
+            }
+            
+            salidasTALLER.forEach((salida, index) => {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${salida.fecha}</td>
+                    <td>${salida.numParte}</td>
+                    <td>${salida.descParte || '-'}</td>
+                    <td>${salida.codServicio}</td>
+                    <td>${salida.descServicio || '-'}</td>
+                    <td>${salida.cantidad}</td>
+                    <td class="currency">$${salida.precioUnitario ? salida.precioUnitario.toFixed(2) : '0.00'}</td>
+                    <td><span class="badge badge-primary">$${salida.iva ? salida.iva.toFixed(2) : '0.00'}</span></td>
+                    <td class="currency">$${salida.costoTotal ? salida.costoTotal.toFixed(2) : '0.00'}</td>
+                    <td>${salida.mecanico || '-'}</td>
+                    <td><button class="action-btn" onclick="eliminarSalida(${index})"><i class="fas fa-trash"></i></button></td>
+                `;
+                cuerpoTabla.appendChild(fila);
+            });
+        }
+        
+        function eliminarSalida(index) {
+            if (confirm('¿Está seguro que desea eliminar esta salida?')) {
+                salidasTALLER.splice(index, 1);
+                localStorage.setItem('salidasTALLER', JSON.stringify(salidasTALLER));
+                actualizarTablaSalidas();
+                alert('Salida eliminada correctamente');
+            }
+        }
+        
+        function limpiarFormulario() {
+            document.getElementById('formSalida').reset();
+            document.getElementById('descParte').value = '';
+            document.getElementById('descServicio').value = '';
+            document.getElementById('precioUnitario').value = '';
+            document.getElementById('iva').value = '';
+            document.getElementById('costoTotal').value = '';
+            // Establecer fecha actual por defecto
+            const hoy = new Date().toISOString().split('T')[0];
+            document.getElementById('fechaSalida').value = hoy;
+        }
+    </script>
+</body>
+</html>

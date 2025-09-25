@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosete y Cía - Códigos de Servicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #5d6bc0, #7e57c2);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        
+        .section-frame {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #f1f3f5, #e9ecef);
+            padding: 12px 20px;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .section-content {
+            padding: 20px;
+            background: white;
+        }
+        
+        .form-container {
+            margin-top: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #5d6bc0;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #3f51b5;
+        }
+        
+        .btn-secondary {
+            background: #f1f3f5;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .codigos-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .codigos-table th {
+            background-color: #5d6bc0;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .codigos-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .codigos-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:hover {
+            color: #c82333;
+            transform: scale(1.1);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .badge-primary {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn" onclick="window.location.href = 'enero.html'">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>ROSETEYCIA - CÓDIGOS DE SERVICIO</h1>
+    </header>
+    
+    <div class="container">
+        <div class="section-frame">
+            <div class="section-header">NUEVO CÓDIGO</div>
+            <div class="section-content">
+                <form id="formCodigo">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CÓDIGO</label>
+                            <input type="text" id="nuevoCodigo" required>
+                        </div>
+                        <div class="form-group" style="flex: 2;">
+                            <label>DESCRIPCIÓN</label>
+                            <input type="text" id="nuevaDescripcion" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="limpiarFormCodigo()">Limpiar</button>
+                        <button type="button" class="btn btn-primary" onclick="agregarCodigo()">Guardar Código</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="section-frame">
+            <div class="section-header">CÓDIGOS REGISTRADOS</div>
+            <div class="section-content">
+                <table class="codigos-table" id="tablaCodigos">
+                    <thead>
+                        <tr>
+                            <th>CÓDIGO</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTablaCodigos">
+                        <!-- Los códigos se cargarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let codigosServicio = JSON.parse(localStorage.getItem('codigosServicio')) || [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarTablaCodigos();
+        });
+        
+        function agregarCodigo() {
+            const codigo = document.getElementById('nuevoCodigo').value.trim();
+            const descripcion = document.getElementById('nuevaDescripcion').value.trim();
+            
+            if (codigo && descripcion) {
+                if (codigosServicio.some(c => c.codigo === codigo)) {
+                    alert('Este código ya está registrado');
+                    return;
+                }
+                
+                const nuevoCodigo = {
+                    codigo,
+                    descripcion
+                };
+                
+                codigosServicio.push(nuevoCodigo);
+                localStorage.setItem('codigosServicio', JSON.stringify(codigosServicio));
+                actualizarTablaCodigos();
+                limpiarFormCodigo();
+            } else {
+                alert('Complete ambos campos');
+            }
+        }
+        
+        function actualizarTablaCodigos() {
+            const cuerpoTabla = document.getElementById('cuerpoTablaCodigos');
+            cuerpoTabla.innerHTML = '';
+            
+            codigosServicio.forEach((codigo, index) => {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td><span class="badge badge-primary">${codigo.codigo}</span></td>
+                    <td>${codigo.descripcion}</td>
+                    <td><button class="action-btn" onclick="eliminarCodigo(${index})"><i class="fas fa-trash"></i></button></td>
+                `;
+                cuerpoTabla.appendChild(fila);
+            });
+        }
+        
+        function eliminarCodigo(index) {
+            if (confirm('¿Eliminar este código?')) {
+                codigosServicio.splice(index, 1);
+                localStorage.setItem('codigosServicio', JSON.stringify(codigosServicio));
+                actualizarTablaCodigos();
+            }
+        }
+        
+        function limpiarFormCodigo() {
+            document.getElementById('nuevoCodigo').value = '';
+            document.getElementById('nuevaDescripcion').value = '';
+        }
+    </script>
+</body>
+</html>

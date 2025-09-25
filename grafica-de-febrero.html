@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosete y Cía - Reporte Febrero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #5d6bc0, #7e57c2);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        
+        .section-frame {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #f1f3f5, #e9ecef);
+            padding: 12px 20px;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .section-content {
+            padding: 20px;
+            background: white;
+        }
+        
+        .chart-container {
+            height: 500px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-primary {
+            background: #5d6bc0;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #3f51b5;
+        }
+        
+        .btn-secondary {
+            background: #f1f3f5;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .entradas-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 30px;
+        }
+        
+        .entradas-section h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+        
+        .entradas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .unidad-card {
+            background: white;
+            padding: 12px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #5d6bc0;
+        }
+        
+        .unidad-id {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+        
+        .unidad-monto {
+            color: #27ae60;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+        
+        .resumen {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .resumen-item {
+            flex: 1;
+        }
+        
+        .resumen-valor {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f1c40f;
+        }
+        
+        .month-title {
+            text-align: center;
+            color: #5d6bc0;
+            margin: 15px 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .no-data {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .section-frame, .section-frame * {
+                visibility: visible;
+            }
+            .section-frame {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                border: none;
+                box-shadow: none;
+            }
+            .btn-group {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn" onclick="window.location.href = 'febrero.html'">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>ROSETEYCIA - REPORTE DE FEBRERO</h1>
+    </header>
+    
+    <div class="container">
+        <div class="month-title">FEBRERO 2025</div>
+        
+        <div class="section-frame">
+            <div class="section-header">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>SALIDAS POR UNIDAD</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="exportarPDF()">
+                            <i class="fas fa-file-pdf"></i> Exportar
+                        </button>
+                        <button class="btn btn-secondary" onclick="window.print()">
+                            <i class="fas fa-print"></i> Imprimir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="chart-container">
+                    <canvas id="unidadesChart"></canvas>
+                </div>
+                <div id="noDataChart" class="no-data" style="display: none;">
+                    No hay datos de salidas registradas
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-frame">
+            <div class="section-header">(FACTURAS)</div>
+            <div class="section-content">
+                <div class="entradas-grid" id="entradasList">
+                    <!-- Las entradas se cargarán aquí -->
+                </div>
+                <div id="noDataEntradas" class="no-data" style="display: none;">
+                    No hay facturas registradas
+                </div>
+            </div>
+        </div>
+        
+        <div class="resumen">
+            <div class="resumen-item">
+                <div>Total Entradas</div>
+                <div class="resumen-valor" id="totalEntradas">$0.00</div>
+            </div>
+            <div class="resumen-item">
+                <div>Total Salidas</div>
+                <div class="resumen-valor" id="totalSalidas">$0.00</div>
+            </div>
+            <div class="resumen-item">
+                <div>Balance</div>
+                <div class="resumen-valor" id="balance">$0.00</div>
+            </div>
+        </div>
+    </div>
+
+    
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        // Cargar facturas y salidas del mes de Febrero
+        const facturasResponse = await fetch("facturas-de-febrero.json");
+        const salidasResponse = await fetch("salidas-de-febrero.json");
+        
+        const facturas = facturasResponse.ok ? await facturasResponse.json() : [];
+        const salidas = salidasResponse.ok ? await salidasResponse.json() : [];
+
+        // Extraer montos
+        const totalFacturas = facturas.reduce((sum, f) => sum + (f.importe || 0), 0);
+        const totalSalidas = salidas.reduce((sum, s) => sum + (s.importe || 0), 0);
+
+        const ctx = document.getElementById('grafica').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Facturas', 'Salidas'],
+                datasets: [{
+                    label: 'Monto',
+                    data: [totalFacturas, totalSalidas],
+                    backgroundColor: ['#4CAF50', '#F44336']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+    } catch (error) {
+        console.error("Error cargando datos para febrero:", error);
+    }
+});
+</script>
+
+</body>
+</html>

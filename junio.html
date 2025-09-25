@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosete y Cía - Junio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #5d6bc0, #7e57c2);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .document-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .document-header {
+            background: #f1f3f5;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .document-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #444;
+            margin: 0;
+        }
+
+        .document-content {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: #5d6bc0;
+            margin: 15px 0 10px 0;
+            font-weight: 500;
+        }
+
+        .divider {
+            height: 1px;
+            background: #eee;
+            margin: 15px 0;
+        }
+
+        .month-indicator {
+            text-align: center;
+            margin: 10px 0 20px;
+            font-size: 1.3rem;
+            color: #5d6bc0;
+            font-weight: 500;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .btn-primary {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5d6bc0, #7e57c2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px 10px 30px;
+            background: #f1f3f5;
+            border: none;
+            border-radius: 8px;
+            color: #5d6bc0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+            color: #3f51b5;
+        }
+
+        .btn-tertiary {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 20px 8px 40px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 6px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-tertiary:hover {
+            color: #495057;
+            background-color: #f1f3f5;
+        }
+
+        .btn-icon {
+            margin-right: 12px;
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .item-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 8px;
+            background: linear-gradient(135deg, #f8f9fa, #f1f3f5);
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .item-btn:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-color: #adb5bd;
+        }
+
+        @media (max-width: 600px) {
+            .item-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>ROSETEYCIA</h1>
+    </header>
+
+    <div class="container">
+        <div class="month-indicator">JUNIO</div>
+
+        <div class="document-container">
+            <div class="document-header">
+                <h2 class="document-title"># ENTRADAS</h2>
+            </div>
+
+            <div class="document-content">
+                <div class="btn-group">
+                    <button class="btn-primary" onclick="window.location.href='facturas-de-junio.html'">
+                        <i class="fas fa-file-invoice btn-icon"></i> FACTURAS
+                    </button>
+
+                    <button class="btn-secondary" onclick="window.location.href='grafica-de-junio.html'">
+                        <i class="fas fa-chart-bar btn-icon"></i> GRAFICA
+                    </button>
+
+                    <button class="btn-tertiary" onclick="window.location.href='codigos-de-todos-los-meses.html'">
+                        <i class="fas fa-code btn-icon"></i> CODIGOS DE SERVICIO
+                    </button>
+                </div>
+
+                <div class="divider"></div>
+
+                <h3 class="section-title">SALIDAS</h3>
+
+                <div class="item-grid">
+                    <button class="item-btn" onclick="window.location.href='salidas-pr0470-de-junio.html'">PR-0470</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pp0670-de-junio.html'">PP-0670</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr1787-de-junio.html'">PR-1787</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr1788-de-junio.html'">PR-1788</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr1879-de-junio.html'">PR-1879</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr2430-de-junio.html'">PR-2430</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr2433-de-junio.html'">PR-2433</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr2434-de-junio.html'">PR-2434</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr2606-de-junio.html'">PR-2606</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr2607-de-junio.html'">PR-2607</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr2610-de-junio.html'">PR-2610</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr2611-de-junio.html'">PR-2611</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr2846-de-junio.html'">PR-2846</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-pr3873-de-junio.html'">PR-3873</button>
+                    <button class="item-btn" onclick="window.location.href='salidas-taller-de-junio.html'">TALLER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = 'meses.html';
+        }
+
+        // Inicializar almacenamiento si no existe
+        if (!localStorage.getItem('facturas')) {
+            localStorage.setItem('facturas', JSON.stringify([]));
+        }
+        if (!localStorage.getItem('codigosServicio')) {
+            localStorage.setItem('codigosServicio', JSON.stringify([]));
+        }
+        if (!localStorage.getItem('salidasPR0470')) {
+            localStorage.setItem('salidasPR0470', JSON.stringify([]));
+        }
+    </script>
+</body>
+</html>
